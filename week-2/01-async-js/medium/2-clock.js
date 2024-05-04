@@ -27,6 +27,9 @@ const time24=`${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDat
 const time12=formatTime(currentDate);
 console.log(`Time(24 hour): ${time24}`);
 console.log(`Time(12 hour): ${time12}`);
+
+setTimeout(updateClock,1000);
 }
 
-setInterval(updateClock,1000);
+updateClock();
+// setInterval(updateClock,1000);
