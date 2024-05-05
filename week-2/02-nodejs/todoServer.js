@@ -39,11 +39,82 @@
 
   Testing the server - run `npm run test-todoServer` command in terminal
  */
-  const express = require('express');
-  const bodyParser = require('body-parser');
-  
-  const app = express();
-  
-  app.use(bodyParser.json());
-  
-  module.exports = app;
+const express = require("express");
+const bodyParser = require("body-parser");
+
+const app = express();
+
+app.use(bodyParser.json());
+
+let todos = [
+  {
+    id: 1,
+    title: "todo 1",
+    description: "description of todo",
+  },
+  {
+    id: 14,
+    title: "todo 14",
+    description: "description of todo",
+  },
+];
+
+app.get("/todos", (req, res) => {
+  res.json(todos);
+});
+
+app.get("/todos/:id", (req, res) => {
+  const todo = todos.find((t) => t.id === parseInt(req.params.id));
+  console.log(todo)
+  if (!todo) {
+    res.status(404).send();
+  }
+  res.json(todo);
+});
+
+app.post("/todos", (req, res) => {
+  const newTodo = {
+    id: Math.floor(Math.random() * 10),
+    title: req.body.title,
+    description: req.body.description,
+    completed: false,
+  };
+  todos.push(newTodo);
+  res.status(201).json(newTodo);
+});
+
+// todos.todoIndex: This syntax is incorrect in JavaScript when todoIndex is a variable. In JavaScript, when you want to access a property of an object using a variable for the property name, you should use bracket notation ([]). For example, if todoIndex is 1, then todos.todoIndex would try to access a property named "todoIndex" in the todos object, which is not what you want.
+// todos[todoIndex]: This is the correct way to access an element in an array using an index (todoIndex). This syntax retrieves the element at the index todoIndex in the todos array. For example, todos[1] would access the element at index 1 in the todos array.
+
+app.put("/todos/:id", (req, res) => {
+  const todoIndex = todos.findIndex((t) => t.id === parseInt(req.params.id));
+ console.log(todoIndex,"todpIndex")
+  if (!todoIndex) {
+    res.status(404).send();
+  }
+  todos[todoIndex].title = req.body.title;
+  console.log(todos,"todos",todos[todoIndex], todos[todoIndex].title)
+  todos[todoIndex].description = req.body.description;
+  res.json(todos[todoIndex]);
+});
+
+app.delete("/todos/:id", (req, res) => {
+  const todoIndex = todos.findIndex((t) => t.id === parseInt(req.params.id));
+ console.log(todoIndex)
+   if (todoIndex === -1) {
+    res.status(404).send();
+  }
+    todos.splice(todoIndex, 1);
+    res.status(200).send('Deleted');
+});
+
+// for all other routes, return 404
+app.use((req, res, next) => {
+  res.status(404).send();
+});
+
+app.listen(3000, () => {
+  console.log("hii");
+});
+
+module.exports = app;
