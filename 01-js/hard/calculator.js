@@ -17,10 +17,43 @@
 */
 
 class Calculator {
-  add(a,b){
-    this.a=a;
-    this.b=b;
-    return a+b;
+  constructor() {
+    this.result = 0;
+  }
+  add(num) {
+    this.result += num;
+  }
+  subtract(num) {
+    this.result -= num;
+  }
+  multiply(num) {
+    this.result *= num;
+  }
+  divide(num) {
+    if (num === 0) {
+      throw new Error("Division by zero is not allowed");
+    }
+    this.result /= num;
+  }
+  clear() {
+    this.result = 0;
+  }
+  getResult() {
+    return this.result;
+  }
+  calculate(expression) {
+    // Remove spaces from the expression
+    expression = expression.replace(/\s/g, "");
+
+    // Validate the expression for invalid characters
+    if (!/^[0-9+\-*/().]*$/.test(expression)) {
+      throw new Error("Invalid characters in the expression");
+    }
+    try {
+      this.result = eval(expression);
+    } catch (e) {
+      throw new Error("Invalid expression");
+    }
   }
 }
 
