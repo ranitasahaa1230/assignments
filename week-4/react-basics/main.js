@@ -4,7 +4,7 @@ function addTodo() {
   const title = document.getElementById("title").value;
   const description = document.getElementById("description").value;
   const parent = document.getElementById("todos");
-  parent.appendChild(createTodo(title, description, globalId));
+  parent.appendChild(createTodo(title, description, globalId++));
 }
 
 function createTodo(title, description, id) {
