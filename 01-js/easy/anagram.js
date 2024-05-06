@@ -5,12 +5,23 @@
 */
 
 function isAnagram(str1, str2) {
-  const cleanStr=(str)=>str.replace(/\s/g,'');
-  const sortedStr=(str)=>cleanStr(str).split('').reverse().join('');
+  const cleanStr = str1.toLowerCase().replace(/\s/g, '');
+  const cleanStr2 = str2.toLowerCase().replace(/\s/g, '');
 
-  return sortedStr(str1)===sortedStr(str2);
+  if (cleanStr.length !== cleanStr2.length) {
+    return false;
+  }
+// console.log(cleanStr,cleanStr2)
+
+  const sorted1 = cleanStr.split('').sort().join('');
+  const sorted2 = cleanStr2.split('').sort().join('');
+
+  return sorted1 === sorted2;
 }
 
-// console.log(isAnagram("spar","rasp"));
+// console.log(isAnagram('Debit Card', 'Bad Credit'));
+// console.log(isAnagram("abc!","!bac"));
+// console.log(isAnagram("hello","hello!"));
+
 
 module.exports = isAnagram;
