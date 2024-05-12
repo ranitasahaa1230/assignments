@@ -13,10 +13,10 @@ function App() {
     <>
      {/* <Assignment1/> */}
      {/* <Assignment2/> */}
-     {/* <Assignemnt3/> */}
+     <Assignemnt3/>
      {/* <Assignemnt4/> */}
      {/* <Assignemnt5/> */}
-     <Assignemnt6/>
+     {/* <Assignemnt6/> */}
      {/* <Assignemnt7/> */}
     </>
   )
