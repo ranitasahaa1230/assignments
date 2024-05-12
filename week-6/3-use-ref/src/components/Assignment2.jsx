@@ -5,14 +5,14 @@ import { useRef } from 'react';
 
 export function Assignment2() {
     const [count, setCount] = useState(0);
-    const inputText=useRef(0)
+    const inputText=useRef(0);
 
     const handleReRender = () => {
         // Update state to force re-render
         setCount(count+1);
     };
 
-    inputText.current=inputText.current+1;
+    inputText.current=inputText.current+1;//1time for setcount, 1 time for useref
 
     return (
         <div>

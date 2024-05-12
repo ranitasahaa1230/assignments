@@ -24,10 +24,6 @@ export function Assignment1() {
                 value={input} 
                 onChange={(e) => setInput(Number(e.target.value))} 
             />
-            <h1>hllo</h1>
-            <h1>hllo</h1>
-            <h1>hllo</h1>
-            <h1>hllo</h1>
 
             <p>Calculated Value: {expensiveValue}</p>
         </div>
